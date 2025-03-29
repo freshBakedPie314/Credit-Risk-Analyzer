@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+
 export const metadata: Metadata = {
   title: "CrediSure",
   description: "Turn risks into opportunities",
