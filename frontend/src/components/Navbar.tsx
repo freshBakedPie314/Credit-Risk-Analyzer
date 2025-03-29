@@ -19,8 +19,8 @@ export function Navbar() {
         <div className=" hidden md:flex items-center gap-[2rem]">
           <Link href="/" className="font-inter font-semibold">Home</Link>
           <Link href="/about" className="font-inter font-semibold">About</Link>
-          <Link href="/credit-score" className="font-inter font-semibold">Credit Score</Link>
-          <Link href="/dashboard" className="font-inter font-semibold">Dashboard</Link>
+          <Link href="/prediction-record" className="font-inter font-semibold">Prediction Record</Link>
+          <Link href="/new-borrower" className="font-inter font-semibold">New Borrower</Link>
         </div>
 
         {/* Authentication */}
