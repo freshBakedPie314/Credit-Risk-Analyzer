@@ -4,12 +4,17 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
+import ToggleSwitch from '@/components/ToggleSwitch';
 import Link from 'next/link';
 
-export default function Login() {
+export default function Signup() {
+  const [userType, setUserType] = useState('borrower');
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
+    phoneNumber: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +26,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Login data:', formData);
+    console.log('Signup data:', { ...formData, userType });
   };
 
   // Animation variants
@@ -79,8 +84,23 @@ export default function Login() {
             transition={{ delay: 0.1, duration: 0.4 }}
             className="text-xl font-bold text-center mb-4 text-white"
           >
-            Welcome Back
+            Create Your Account
           </motion.h1>
+          
+          <motion.div
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            <ToggleSwitch
+              options={[
+                { value: 'borrower', label: 'Borrower' },
+                { value: 'lender', label: 'Lender' }
+              ]}
+              value={userType}
+              onChange={setUserType}
+            />
+          </motion.div>
 
           <motion.form
             variants={containerVariants}
@@ -89,6 +109,25 @@ export default function Login() {
             onSubmit={handleSubmit}
             className="space-y-3"
           >
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Input
+                label="First Name"
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                label="Last Name"
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
+            </motion.div>
+
             <motion.div variants={itemVariants}>
               <Input
                 label="Email"
@@ -113,26 +152,29 @@ export default function Login() {
               />
             </motion.div>
 
-            <motion.div 
-              variants={itemVariants}
-              className="pt-2"
-            >
-              <Button type="submit">
-                Login
-              </Button>
+            <motion.div variants={itemVariants}>
+              <Input
+                label="Phone Number"
+                id="phoneNumber"
+                name="phoneNumber"
+                type="tel"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                required
+              />
             </motion.div>
 
             <motion.div 
               variants={itemVariants}
-              className="pt-1 text-center text-sm text-gray-400"
+              className="space-y-2"
             >
-              <p>
-                Don't have an account?{' '}
-                <Link 
-                  href="/signup" 
-                  className="text-[#F25F30] hover:underline"
-                >
-                  Sign up
+              <Button type="submit">
+                Register
+              </Button>
+              <p className="text-center text-sm text-gray-400">
+                Already have an account?{' '}
+                <Link href="/login" className="text-[#F25F30] hover:underline">
+                  Login
                 </Link>
               </p>
             </motion.div>
