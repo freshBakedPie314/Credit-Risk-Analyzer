@@ -3,20 +3,20 @@ import Image from "next/image";
 
 export function Navbar() {
   return (
-    <div className="flex justify-around w-[100vw] items-center px-4 py-6">
+    <div className="flex justify-around items-center py-6">
         {/* Logo */}
         <div className="flex gap-2 items-center">
-            <div>
+            <Link href="/">
               <Image src="/logo.png" alt="logo" width={40} height={40} />
-            </div>
-            <div>
+            </Link>
+            <Link href="/">
                 <h1 className="text-[1.4rem]/[1.6rem] font-roboto font-medium ">CrediSure</h1>
                 <p className="text-[.65rem] font-moulpali font-thin">SMARTER RISKS, SAFER LENDING</p>
-            </div>
+            </Link>
         </div>
 
         {/* Navbar */}
-        <div className="flex items-center gap-[2rem]">
+        <div className=" hidden md:flex items-center gap-[2rem]">
           <Link href="/" className="font-inter font-semibold">Home</Link>
           <Link href="/about" className="font-inter font-semibold">About</Link>
           <Link href="/credit-score" className="font-inter font-semibold">Credit Score</Link>
@@ -25,8 +25,10 @@ export function Navbar() {
 
         {/* Authentication */}
         <div>
-          <Link href="/login">
-            <button className="bg-white text-black">Get Started</button>
+          <Link href="/signup">
+            <button className="bg-[#f25f30] text-white px-4 py-2 rounded-full cursor-pointer">
+              Get Started
+            </button>
           </Link>
         </div>
 
